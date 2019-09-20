@@ -168,11 +168,11 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1"></label>
                 <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1 (Strongly Disagree)</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5 (Strongly Agree)</option>
+                    <option value ="1">1 (Strongly Disagree)</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5 (Strongly Agree)</option>
                 </select>
             </div>
         </form>
@@ -182,7 +182,7 @@
         <hr>
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a>
+                <p><a href="/api/friends">Friends List</a>
             </div>
         </footer>
 
@@ -207,6 +207,12 @@
     })
 
     $.post("api/friends", newFriend, function (data) {
+        if (data) {
+            alert("Thank you for your subbmision!");
+        }
+        else {
+            alert("Oops! Something went wrong, please try again!");
+        }
         $("#friend-name").val("");
         $("friend-photo").val("");
         $("friendScore").val("");
