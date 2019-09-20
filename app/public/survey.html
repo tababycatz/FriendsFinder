@@ -59,3 +59,24 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+$(".submit").on("click", function(event){
+    event.preventDefault();
+
+    var newFriend = {
+       friendName = $("#friend-name").val().trim(),
+       friendPhoto = $("#friend-photo").val().trim(),
+       friendScore = $("#scores").val().trim
+    };
+
+    console.log(newFriend);
+})
+
+$.post("api/friends", newFriend, function(data) {
+    $("#friend-name").val("");
+    $("friend-photo").val("");
+    $("friendScore").val("");
+    })
+
+</script>
