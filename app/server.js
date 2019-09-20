@@ -8,18 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-require("./routing/apiRoutes")(app);
-require("./routing/htmlRoutes")(app);
-
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
-});
-
-app.get("/add", function (req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
-});
-
-require('./app/routing/htmlRoutes.js')(app);
+require('./routing/htmlRoutes.js')(app);
+require('./routing/apiRoutes.js')(app);
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
