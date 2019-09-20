@@ -44,7 +44,7 @@
         <h3>Question 2</h3>
         <h4>You like to watch TV</h4>
         <form>
-            <div class="form-group">                
+            <div class="form-group">
                 <select class="form-control" id="q2">
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -186,28 +186,47 @@
 <script type="text/javascript">
     $(".submit").on("click", function (event) {
         event.preventDefault();
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Best Match</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 id="friend-match-name"> </h3>
+                        <img id="friend-match-picture" src=""> </img>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         var newFriend = {
             name = $("#name").val(),
             photo = $("#photo").val(),
-            scores = [ 
-            $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
-          ]
+            scores =[
+                $("#q1").val(),
+                $("#q2").val(),
+                $("#q3").val(),
+                $("#q4").val(),
+                $("#q5").val(),
+                $("#q6").val(),
+                $("#q7").val(),
+                $("#q8").val(),
+                $("#q9").val(),
+                $("#q10").val()
+            ]
         };
-        
+
         $.post("api/friends", newFriend, function (data) {
             $("#friend-match-name").text(data.name);
             $("#friend-match-pic").attr("src", data.photo);
         })
-        
+
     })
-        </script>
+</script>
