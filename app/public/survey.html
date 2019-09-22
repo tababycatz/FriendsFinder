@@ -223,10 +223,19 @@
             ]
         };
 
-        $.post("api/friends", newFriend, function (data) {
+        $.post("api/friends", newFriend, function(data) {
+            if (data) {
             $("#friend-match-name").text(data.name);
             $("#friend-match-pic").attr("src", data.photo);
+            //needs to go to through comparison loop and display results on modal//
+            
+            $("#friend-match-name").val("");
+            $("friend-match-pic").val("");
+            } else {
+                alert("Sorry, please fill in all sections of the survey!");
+            }
         })
+
 
     })
 </script>
