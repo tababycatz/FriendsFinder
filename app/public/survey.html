@@ -8,6 +8,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
 
@@ -167,7 +168,7 @@
             </div>
         </form>
         <br>
-        <button class="btn btn-lg btn-danger" type="submit">Submit</button>
+        <button class="btn btn-lg btn-danger" type="submit" id="submit">Submit</button>
         <br>
         <hr>
         <footer class="footer">
@@ -183,9 +184,30 @@
 
 </html>
 
+// MODAL WINDOW//
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Best Match</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 id="friend-match-name"> </h3>
+                <img id="friend-match-picture" src=""> </img>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
-    $(".submit").on("click", function(event) {
+    $("#submit").on("click", function(event) {
         event.preventDefault();
 
         var newFriend = {
@@ -206,29 +228,10 @@
         };
 
         console.log(newFriend);
-        // <div class="modal" tabindex="-1" role="dialog">
-        //     <div class="modal-dialog" role="document">
-        //         <div class="modal-content">
-        //             <div class="modal-header">
-        //                 <h5 class="modal-title">Best Match</h5>
-        //                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        //                     <span aria-hidden="true">&times;</span>
-        //                 </button>
-        //             </div>
-        //             <div class="modal-body">
-        //                 <h3 id="friend-match-name"> </h3>
-        //                 <img id="friend-match-picture" src=""> </img>
-        //             </div>
-        //             <div class="modal-footer">
-        //                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
 
-        $.post("api/friends", newFriend,
+        $.post("/api/friends", newFriend,
             function (data) {
-                if (data == true) {
+                if (data) {
                     $("#friend-match-name").text(data.name);
                     $("#friend-match-pic").attr("src", data.photo);
                     //needs to go to through comparison loop and display results on modal//
@@ -238,8 +241,9 @@
                 }
                 $("#friend-match-name").val("");
                 $("friend-match-pic").val("");
-            })
+            });
 
 
-    })
+    });
+
 </script>
