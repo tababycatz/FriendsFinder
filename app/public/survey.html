@@ -185,7 +185,7 @@
 </html>
 
 // MODAL WINDOW//
-<div class="modal" tabindex="-1" role="dialog">
+<div class="modal" tabindex="-1" role="dialog" id="results">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -207,7 +207,7 @@
 
 <script type="text/javascript">
 
-    $("#submit").on("click", function(event) {
+    $("#submit").on("click", function (event) {
         event.preventDefault();
 
         var newFriend = {
@@ -231,16 +231,15 @@
 
         $.post("/api/friends", newFriend,
             function (data) {
-                if (data) {
-                    $("#friend-match-name").text(data.name);
-                    $("#friend-match-pic").attr("src", data.photo);
-                    //needs to go to through comparison loop and display results on modal//
 
-                } else {
-                    alert("Sorry, please fill in all sections of the survey!");
-                }
+                $("#friend-match-name").text(data.name);
+                $("#friend-match-pic").attr("src", data.photo);
+                //needs to go to through comparison loop and display results on modal//
+
                 $("#friend-match-name").val("");
                 $("friend-match-pic").val("");
+
+                $("results").modal("toggle");
             });
 
 
