@@ -19,7 +19,7 @@ module.exports = function(app) {
         for (let i = 0; i < friendsData.length; i++) {
             var diff = 0;
             for (let j = 0; j < friendAnswer.length; j++) {
-                diff += Math.abs(friends[i].scores[j] - userResponses[j]);
+                diff += Math.abs(newFriend[i].scores[j] - userResponses[j]);
             }
             if (diff < totalDifference) {
                 totalDifference = diff;
