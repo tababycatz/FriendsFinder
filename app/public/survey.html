@@ -232,7 +232,7 @@ $("#submit").on("click", function (event) {
         $("#friend-match-name").text(data.matchName);
         $("#friend-match-pic").attr("src", data.matchPic);
         
-        $("results").modal("open");
+        $("#results").modal("toggle");
         
     });    
 });
