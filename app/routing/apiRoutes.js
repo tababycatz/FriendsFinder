@@ -18,16 +18,18 @@ module.exports = function(app) {
         
         var newFriend = req.body;
         var friendAnswer = newFriend.scores;
+        var friendDifference = 0;
 
         for (let i = 0; i < friendsData.length; i++) {
-            var diff = 0;
+            totalDifference = 0;
             for (let j = 0; j < friendAnswer.length; j++) {
-                diff += Math.abs(newFriend[i].scores[j] - friendAnswer[j]);
+                diff += Math.abs(parseInt(newFriend[i].scores[j]) - parseInt(friendAnswer[j]));
             }
-            if (diff < totalDifference) {
+            if (friendDifference <= friendMatch.totalDifference) {
                 totalDifference = diff;
-                matchName = friendsData[i].name;
-                matchPic = friendsData[i].photo;
+                friendMatch.matchName = friendsData[i].name;
+                friendMatch.matchPic = friendsData[i].photo;
+                friendMatch.totalDifference = friendDifference;
             }
         };
 
