@@ -1,6 +1,6 @@
 var path = require("path");
 var friendsData = require("../data/friends");
-console.log(friendsData);
+// console.log(friendsData);
 
 module.exports = function(app) {
     app.get("/api/friends", function (req, res) {
@@ -36,4 +36,5 @@ module.exports = function(app) {
         friendsData.push(newFriend);
         res.json({friendMatch});
     })
+    // console.log(req.body);
 };

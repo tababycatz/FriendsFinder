@@ -176,12 +176,8 @@
                 <p><a href="/api/friends">Friends List</a>
             </div>
         </footer>
-
     </div>
 
-
-    
-    // MODAL WINDOW//
     <div class="modal" tabindex="-1" role="dialog" id="results">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -235,7 +231,7 @@ $("#submit").on("click", function (event) {
                 ]
         };
     };
-    
+
     $.post("/api/friends", newFriend, function (data) {
         
         $("#friend-match-name").text(data.matchName);
