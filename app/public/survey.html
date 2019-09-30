@@ -207,27 +207,38 @@
 $("#submit").on("click", function (event) {
     event.preventDefault();
     
-    var newFriend = {
+    function valForm() {
+        var valid = true;
+        $(".form-control").each(function() {
+            if ($(this).val() === "") {
+                valid = false;
+            }
+        });
+
+    };
+    
+    if (valForm()) {
+        var newFriend = {
         name: $("#name").val(),
         photo: $("#photo").val(),
         scores: [
-            $("#q1").val().trim(),
-            $("#q2").val().trim(),
-            $("#q3").val().trim(),
-            $("#q4").val().trim(),
-            $("#q5").val().trim(),
-            $("#q6").val().trim(),
-            $("#q7").val().trim(),
-            $("#q8").val().trim(),
-            $("#q9").val().trim(),
-            $("#q10").val().trim()
-        ]
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+                ]
+        };
     };
+    var currentURL = window.location.origin;
     
-    console.log(newFriend);
     
-    $.post("/api/friends", newFriend,
-    function (data) {
+    $.post(currentURL + "/api/friends", newFriend, function (data) {
         
         $("#friend-match-name").text(data.matchName);
         $("#friend-match-pic").attr("src", data.matchPic);
@@ -236,6 +247,8 @@ $("#submit").on("click", function (event) {
         
     });    
 });
+
+
 
 </script>
 </body>
