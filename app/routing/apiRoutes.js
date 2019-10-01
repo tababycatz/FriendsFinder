@@ -21,9 +21,9 @@ module.exports = function(app) {
         var friendDifference = 0;
 
         for (let i = 0; i < friendsData.length; i++) {
-            totalDifference = 0;
+            friendDifference = 0;
             for (let j = 0; j < friendAnswer.length; j++) {
-                diff += Math.abs(parseInt(newFriend[i].scores[j]) - parseInt(friendAnswer[j]));
+                friendDifference += Math.abs(parseInt(newFriend[i].scores[j]) - parseInt(friendAnswer[j]));
             }
             if (friendDifference <= friendMatch.totalDifference) {
                 totalDifference = diff;
