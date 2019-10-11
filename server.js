@@ -7,9 +7,11 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(express.static("public"));
 
-require('../FriendsFinder/app/routing/htmlRoutes.js')(app);
-require('../FriendsFinder/app/routing/apiRoutes.js')(app);
+
+require('./routing/htmlRoutes')(app);
+require('./routing/apiRoutes')(app);
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
