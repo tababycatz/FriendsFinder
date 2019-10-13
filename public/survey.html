@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="../public/assets/js/finder.js"></script>
 
 </head>
 
@@ -178,18 +179,16 @@
         </footer>
     </div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="results">
+    <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Best Match</h5>
+                    <h5 class="modal-title">You Matched</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h3 id="friend-match-name"> </h3>
-                    <img id="friend-match-picture" src=""> </img>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -197,53 +196,9 @@
             </div>
         </div>
     </div>
-    
-    <script type="text/javascript">
-
-$("#submit").on("click", function (event) {
-    event.preventDefault();
-    
-    function valForm() {
-        var valid = true;
-        $(".form-control").each(function() {
-            if ($(this).val() === "") {
-                valid = false;
-            }
-        });
-
-    };
-    
-    if (valForm()) {
-        var newFriend = {
-        name: $("#name").val(),
-        photo: $("#photo").val(),
-        scores: [
-            $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
-                ]
-        };
-    };
-
-    $.post("/api/friends", newFriend, function (data) {
-        
-        $("#friend-match-name").text(data.matchName);
-        $("#friend-match-pic").attr("src", data.matchPic);
-        
-        $("#results").modal("toggle");
-        
-    });    
-});
 
 
 
-</script>
 </body>
+
 </html>
