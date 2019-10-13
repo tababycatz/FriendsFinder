@@ -1,5 +1,6 @@
 $("#submitBtn").on("click", function() {
-    
+    event.preventDefault();
+
         var newFriend = {
         name: $("#name").val(),
         photo: $("#photo").val(),
@@ -17,15 +18,13 @@ $("#submitBtn").on("click", function() {
                 ]
     };
 
-
-    $.post('/api/friends', newFriend).done(function(data) {
-        $('#myModal').openModal();
-        $('#modalBody').append("<h5>" + data.name)
-        $('#modalBody').append(data.photo);
-        
-    });  
-
-    console.log(newFriend)
+$.post("/api/friends", newFriend, function(data) {
+  
+           
+            $("#matchName").text(data.name);
+            $("#matchPic").attr("src", data.photo);
+  
+            $("#myModal").modal("toggle");
+    
 });
-
-
+});

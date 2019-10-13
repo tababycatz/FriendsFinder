@@ -169,7 +169,7 @@
             </div>
         </form>
         <br>
-        <button class="btn btn-lg btn-danger" type="submit" id="submit" data-toggle="modal" data-target="#myModal"> Submit</button>
+        <button class="btn btn-lg btn-danger" type="submit" id="submitBtn" data-toggle="modal" data-target="#myModal"> Submit</button>
         <br>
         <hr>
         <footer class="footer">
@@ -180,15 +180,18 @@
     </div>
 
     <div id="myModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal fade" class="modal-dialog" role="document">
+        <div class="modal-dialog">
+            
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">You Matched</h5>
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
+
                 <div id="modalBody" class="modal-body">
+                    <h2 id="matchName"></h2>
+                    <img id="matchPic">
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -196,7 +199,25 @@
         </div>
     </div>
 
-
+    <script type="text/javascript">
+    function validateForm() {
+          var isValid = true;
+          $(".form-control").each(function() {
+            if ($(this).val() === "") {
+              isValid = false;
+            }
+          });
+  
+          $(".form-control").each(function() {
+  
+            if ($(this).val() === "") {
+              isValid = false;
+            }
+          });
+          return isValid;
+        }
+    </script>
+    
 
 </body>
 
